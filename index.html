@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- External JS -->
+    <script defer src="js/script.js"></script>
+
+    <title>Code Breaker</title>
+  </head>
+  <body>
+    <!-- **************************************** -->
+    <!-- HEADER -->
+    <!-- **************************************** -->
+    <header>
+      <div id="header-status">
+        <button id="menu-btn" class="game-btn">Menu</button>
+
+        <div id="round-number-label">
+          Round:&nbsp;<span id="round-number">1</span>
+        </div>
+
+        <div id="timer-count-container">
+          <div id="timer-bar-outer">
+            <div id="timer-bar-inner"></div>
+          </div>
+          <div id="timer-clock">120s</div>
+        </div>
+
+        <div id="current-score-label">
+          Score:&nbsp;<span id="current-score">0</span>
+        </div>
+
+        <button id="pause-btn" class="game-btn">Pause</button>
+      </div>
+
+      <h2 id="game-message">Code Breaker</h2>
+
+      <div id="numbers-container">
+        <div id="numbers-box">
+          <div id="number-1" class="number">?</div>
+          <!-- <div id="number-1" class="number">?</div>
+          <div id="number-1" class="number">?</div>
+          <div id="number-1" class="number">?</div> -->
+        </div>
+      </div>
+    </header>
+
+    <!-- **************************************** -->
+    <!-- MAIN -->
+    <!-- **************************************** -->
+    <main>
+      <!-- HOME SCREEN MODAL -->
+      <section id="home-screen-modal" class="modal-container">
+        <h1 id="game-title">CODE BREAKER</h1>
+        <div id="home-screen-btns-container">
+          <button id="home-btn--play" class="home-btn">Play Game</button>
+          <button id="home-btn--how-to-play" class="home-btn">
+            How To Play
+          </button>
+          <button id="home-btn--high-score" class="home-btn">
+            High Scores
+          </button>
+        </div>
+      </section>
+
+      <!-- MENU SCREEN MODAL -->
+      <section id="menu-modal-container" class="modal-container hidden">
+        <div id="menu-modal" class="modal">
+          <button id="menu-btn--back" class="menu-btn">Back to Game</button>
+          <button id="menu-btn--music" class="menu-btn">Music Off</button>
+          <button id="menu-btn--sound" class="menu-btn">Sound Off</button>
+          <button id="menu-btn--how-to-play" class="menu-btn">
+            How to Play
+          </button>
+          <button id="menu-btn--high-score" class="menu-btn">High Score</button>
+          <button id="menu-btn--quit" class="menu-btn">Quit Game</button>
+        </div>
+      </section>
+
+      <!-- PAUSE SCREEN MODAL -->
+      <section id="pause-modal-container" class="modal-container hidden">
+        <div id="pause-modal" class="modal">
+          <button id="pause-btn--back" class="pause-btn">Back to Game</button>
+          <button id="pause-btn--restart" class="pause-btn">
+            Restart Game
+          </button>
+        </div>
+      </section>
+
+      <!-- ROUND CLEARED SCREEN MODAL -->
+      <section
+        id="round-cleared-modal-container"
+        class="modal-container hidden"
+      >
+        <div id="round-cleared-modal" class="modal">
+          <h2 id="round-cleared-greeting">You are amazing!</h2>
+
+          <div id="round-cleared-texts">
+            <p id="round-cleared-time-used-container">
+              Time used:&nbsp;<span id="round-cleared-time-used">10</span>s
+            </p>
+
+            <p id="round-cleared-time-left-container">
+              Time left:&nbsp;<span id="round-cleared-time-left">10</span>s
+            </p>
+
+            <p id="round-cleared-current-score-container">
+              Current score:&nbsp;<span id="round-cleared-current-score"
+                >0</span
+              >
+            </p>
+          </div>
+
+          <div id="round-cleared-btns">
+            <button id="exit-game-btn" class="round-cleared-btn">
+              Exit Game
+            </button>
+            <button id="next-round-btn" class="round-cleared-btn">
+              Next Round
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- HIGH SCORE SCREEN MODAL -->
+      <section id="high-score-modal-container" class="modal-container hidden">
+        <div id="high-score-modal" class="modal">
+          <button id="high-score--back-btn">Back</button>
+          <h2 id="high-score--title">PLAYER SCORES</h2>
+
+          <div id="high-score--label-container">
+            <h3 id="high-score--label-rank">Rank</h3>
+            <h3 id="high-score--label-name">Name</h3>
+            <h3 id="high-score--label-score">Score</h3>
+          </div>
+
+          <div id="high-score--list-container">
+            <div class="player">
+              <span class="player-rank">1</span>
+              <span class="player-name">Galaxy</span>
+              <span class="player-score">110</span>
+            </div>
+
+            <div class="player">
+              <span class="player-rank">2</span>
+              <span class="player-name">Markaroone</span>
+              <span class="player-score">100</span>
+            </div>
+
+            <div class="player">
+              <span class="player-rank">3</span>
+              <span class="player-name">Dany</span>
+              <span class="player-score">95</span>
+            </div>
+
+            <div class="player">
+              <span class="player-rank">3</span>
+              <span class="player-name">Dany</span>
+              <span class="player-score">95</span>
+            </div>
+
+            <div class="player">
+              <span class="player-rank">3</span>
+              <span class="player-name">Dany</span>
+              <span class="player-score">95</span>
+            </div>
+
+            <div class="player">
+              <span class="player-rank">3</span>
+              <span class="player-name">Dany</span>
+              <span class="player-score">95</span>
+            </div>
+
+            <div class="player">
+              <span class="player-rank">3</span>
+              <span class="player-name">Dany</span>
+              <span class="player-score">95</span>
+            </div>
+
+            <div class="player">
+              <span class="player-rank">3</span>
+              <span class="player-name">Dany</span>
+              <span class="player-score">95</span>
+            </div>
+
+            <div class="player">
+              <span class="player-rank">3</span>
+              <span class="player-name">Dany</span>
+              <span class="player-score">95</span>
+            </div>
+
+            <div class="player">
+              <span class="player-rank">3</span>
+              <span class="player-name">Dany</span>
+              <span class="player-score">95</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW TO PLAY SCREEN MODAL -->
+      <section id="how-to-play-modal-container" class="modal-container hidden">
+        <div id="how-to-play-modal" class="">
+          <!-- Instruction 1 -->
+          <div id="how-to-play--1" class="how-to-play--container">
+            <div class="how-to-play-img-container">
+              <img
+                class="how-to-play-img"
+                src="assets/how-to-play/1.jpg"
+                alt="How to play instruction 1"
+              />
+            </div>
+            <p class="how-to-play-txt">
+              Guess the number in the hidden box before the time ends by typing
+              your guess in the input box. A range will be given on the screen.
+            </p>
+          </div>
+
+          <!-- Instruction 2 -->
+          <div id="how-to-play--2" class="how-to-play--container hidden">
+            <div class="how-to-play-img-container">
+              <img
+                class="how-to-play-img"
+                src="assets/how-to-play/2.jpg"
+                alt="How to play instruction 2"
+              />
+            </div>
+            <p class="how-to-play-txt">
+              Use the enter key on your keyboard or the enter button on the
+              screen to check if your guess is correct. Each correct guess is
+              worth 10 points. Clearing a round adds a bonus point of up to 50
+              points depending on the time you consumed that round.
+            </p>
+          </div>
+
+          <!-- Instruction 3 -->
+          <div id="how-to-play--2" class="how-to-play--container hidden">
+            <div class="how-to-play-img-container">
+              <img
+                class="how-to-play-img"
+                src="assets/how-to-play/3.jpg"
+                alt="How to play instruction 2"
+              />
+            </div>
+            <p class="how-to-play-txt">
+              You can use the + or - buttons on the side of the input box to
+              increment your guess by 1.
+            </p>
+          </div>
+
+          <!-- Instruction 4 -->
+          <div id="how-to-play--2" class="how-to-play--container hidden">
+            <div class="how-to-play-img-container">
+              <img
+                class="how-to-play-img"
+                src="assets/how-to-play/4.jpg"
+                alt="How to play instruction 2"
+              />
+            </div>
+            <p class="how-to-play-txt">
+              You can use the random button to generate a random number based on
+              the given range.
+            </p>
+          </div>
+
+          <!-- Instruction 5 -->
+          <div id="how-to-play--2" class="how-to-play--container hidden">
+            <div class="how-to-play-img-container">
+              <img
+                class="how-to-play-img"
+                src="assets/how-to-play/5.jpg"
+                alt="How to play instruction 2"
+              />
+            </div>
+            <p class="how-to-play-txt">
+              You can clear the input field by using the backspace key or delete
+              key on your keyboard or by using the clear button on the screen.
+            </p>
+          </div>
+
+          <button id="how-to-play-btn--back">Back</button>
+
+          <div id="how-to-play-btns--radio">
+            <button id="radio-btn--1" class="radio-btn selected"></button>
+            <button id="radio-btn--2" class="radio-btn"></button>
+            <button id="radio-btn--3" class="radio-btn"></button>
+            <button id="radio-btn--4" class="radio-btn"></button>
+            <button id="radio-btn--5" class="radio-btn"></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- GAME OVER SCREEN MODAL -->
+      <section id="game-over-modal-container" class="modal-container hidden">
+        <div id="game-over-modal" class="modal">
+          <h2 id="game-over-title">Game Over</h2>
+          <div id="game-over-btns-container">
+            <button id="game-over-btn--play-again" class="game-over-btn">
+              Play again
+            </button>
+            <button id="game-over-btn--quit-game" class="game-over-btn">
+              Quit game
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESET GAME CONFIRMATION DIALOG SCREEN MODAL -->
+      <section
+        id="reset-confirm-dialog-modal-container"
+        class="modal-container hidden"
+      >
+        <div id="reset-confirm-dialog-modal" class="modal">
+          <h2 id="reset-confirm-dialog-modal--title">
+            Do you want to<br />exit the game?
+          </h2>
+          <div id="reset-confirm-dialog-btns--container">
+            <button id="reset-confirm-btn--yes" class="confirm-btn">Yes</button>
+            <button id="reset-confirm-btn--no" class="confirm-btn">No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESTART GAME CONFIRMATION DIALOG SCREEN MODAL -->
+      <section
+        id="restart-confirm-dialog-modal-container"
+        class="modal-container hidden"
+      >
+        <div id="restart-confirm-dialog-modal" class="modal">
+          <h2 id="restart-confirm-dialog-modal--title">
+            Do you want to<br />restart the game?
+          </h2>
+          <div id="restart-confirm-dialog-btns--container">
+            <button id="restart-confirm-btn--yes" class="confirm-btn">
+              Yes
+            </button>
+            <button id="restart-confirm-btn--no" class="confirm-btn">No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ENTER NAME SCREEN -->
+      <section id="enter-name-modal-container" class="modal-container hidden">
+        <div id="enter-name-modal" class="modal">
+          <button id="enter-name-modal--back-btn">Back to Main</button>
+          <p id="enter-name-modal--title">Input your name</p>
+          <input id="enter-name-modal--input" type="text" />
+          <button id="enter-name-modal--enter-btn">Enter</button>
+        </div>
+      </section>
+
+      <!-- NEW HIGH SCORE MODAL -->
+
+      <!-- GAME SCREEN - INPUTS 1 -->
+      <section id="inputs-container">
+        <!-- <button id="random-num-btn" class="inputs-btn">🔀</button> -->
+
+        <button id="dec-btn" class="inc-dec-btn">-</button>
+        <input id="input-display" type="text" />
+        <button id="inc-btn" class="inc-dec-btn">+</button>
+        <!-- <button id="clear-input-btn" class="inputs-btn">❌</button> -->
+      </section>
+
+      <!-- GAME SCREEN - INPUTS 2 -->
+      <section id="inputs-btn-container">
+        <button id="random-btn" class="inputs-btn">Random</button>
+        <button id="enter-btn" class="inputs-btn">Enter</button>
+        <button id="clear-btn" class="inputs-btn">Clear</button>
+      </section>
+    </main>
+  </body>
+</html>

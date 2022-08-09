@@ -157,7 +157,7 @@ let gameScreen = 0;
 
 // This function will return a random number from the range given.
 const generateRandomNum = (min, max) =>
-  Math.round(Math.random() * (max - min)) + min;
+  Math.floor(Math.random() * (max - min)) + min;
 
 // This function will return an array of randomly generated numbers from 0 - 100 with a length of the argument passed.
 const generateNumbersToGuess = function (min = 1, max = 10, length = 1) {
